@@ -19,8 +19,8 @@ RUN chmod -R 777 /app
 # Set permissions for specific directories (adjust as needed)
 RUN mkdir /tmp/cache && chmod -R 777 /tmp/cache
 
-# Expose the port on which your service runs (40000)
-EXPOSE 40000
+# Expose the port  
+EXPOSE 8081
 
 # Run the label-studio command as the container's entry point
 CMD ["label-studio"]

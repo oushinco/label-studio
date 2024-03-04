@@ -13,15 +13,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
-# Change ownership and permissions of the /app directory
-RUN chmod -R 777 /app
+# Adjust permissions to ensure the directory is writable by arbitrary users
+RUN chmod -R 777 /app && \
+    mkdir /tmp/cache && chmod -R 777 /tmp/cache && \
+    mkdir -p /.local && chmod -R 777 /.local
 
-# Set permissions for specific directories (adjust as needed)
-RUN mkdir /tmp/cache && chmod -R 777 /tmp/cache
-
-# Expose the port  
+# Expose the port on which your service runs
 EXPOSE 8081
 
 # Run the label-studio command as the container's entry point
 CMD ["label-studio"]
-
